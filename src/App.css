@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.country {
+  text-align: center;
+}
+
+.name{
+  font-weight: bold;
+}
+
+button {
+  margin-left: 5px;
+}
