@@ -1,29 +1,54 @@
 import React, {Component} from 'react';
+import Medal from './Medal';
 
 
 class Country extends Component {
-    state = {
-        name: this.props.country.name,
-        medal: this.props.country.medal,
+    // state = {
+    //     name: this.props.country.name,
+    //     gold: this.props.country.gold,
+    // }
+
+    // addMedal = () => this.setState({gold: this.state.gold + 1});
+    // subtractMedal = () => this.setState({gold: this.state.gold - 1});
+
+    getTotals(country, medals){
+        let sum = 0;
+        medals.forEach(medal => {sum += country[medal.name];});
+        return sum;
     }
 
-    addMedal = () => this.setState({medal: this.state.medal + 1});
-    subtractMedal = () => this.setState({medal: this.state.medal - 1});
 
 
     render() {
-
+        const {country, medals, onAdd, onSubtract} = this.props;
         return (
             <div className='country'>
                 <div className='name'>
-                    {this.state.name}
-                </div>
-                <div className='medals'>
-                    Gold Medals: {this.state.medal}
-                    <button onClick={this.addMedal}>+</button>
-                    <button disabled={this.state.medal===0} onClick={this.subtractMedal} >-</button>
+                {/*<div className='name'>*/}
+                {/*    {this.state.name}*/}
+                {/*</div>*/}
+                {/*<div className='medals'>*/}
+                {/*    Gold Medals: {this.state.medal}*/}
+                {/*    <button onClick={this.addMedal}>+</button>*/}
+                {/*    <button disabled={this.state.medal===0} onClick={this.subtractMedal} >-</button>*/}
 
+                {/*</div>*/}
+
+                {country.name}
+                <span className='badge'>
+                    {this.getTotals(country, medals)}
+                </span>
                 </div>
+                { medals.map(medal => 
+                <Medal
+                    key={medal.id}
+                    country={country}
+                    medal={medal}
+                    onAdd={onAdd}
+                    onSubtract={onSubtract}
+                />
+                )}
+                <hr/>
             </div>
         );
     }
