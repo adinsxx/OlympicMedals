@@ -7,9 +7,9 @@ export class NewCountry extends Component {
 
     togglePrompt = () =>{
       //triggers prompt box
-      const countryName = prompt('Enter country name');
-      if (countryName && countryName.trim().length > 0){
-          this.props.onAdd(countryName);
+      const name = prompt('Enter country name');
+      if (name && name.trim().length > 0){
+          this.props.onAdd(name);
       }
     }
 

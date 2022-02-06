@@ -16,8 +16,7 @@ class App extends Component {
       {id: 3, name: 'bronze'},
     ]
   }
-
-  handleAdd = (countryId, medalName) => {
+  handleIncrement = (countryId, medalName) => {
     const countries = [...this.state.countries];
     const idx = countries.findIndex((c) =>c.id === countryId)
     countries[idx][medalName]+=1;
@@ -37,8 +36,16 @@ class App extends Component {
   }
 
   handleDelete = (countryId) => {
-    const countries = this.state.countries.filter(c => c.id !== countryId);
-    this.setState({countries: countries});
+    const {countries} = this.state;
+    const mutableCountries = [...countries].filter(c => c.id !== countryId);
+    this.setState({countries: mutableCountries})
+  }
+
+  handleAdd = (name) => {
+    const {countries} = this.state;
+    const id = countries.length === 0 ? 1 : Math.max(...countries.map(countries=>countries.id)) + 1;
+    const mutableCountries = [...countries].concat({id: id, name: name, gold: 0, silver: 0, bronze: 0 });
+    this.setState({countries: mutableCountries})
   }
 
   render() { 
@@ -59,8 +66,10 @@ class App extends Component {
                 key={country.id}
                 country={country}
                 medals={this.state.medals}
-                onAdd={this.handleAdd}
-                onSubtract={this.handleSubtract}/>
+                onIncrement={this.handleIncrement}
+                onSubtract={this.handleSubtract}
+                onDelete={this.handleDelete}
+                />
                 
               )}
               <NewCountry 
