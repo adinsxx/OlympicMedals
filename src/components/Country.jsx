@@ -24,16 +24,6 @@ class Country extends Component {
         return (
             <div className='country'>
                 <div className='name'>
-                {/*<div className='name'>*/}
-                {/*    {this.state.name}*/}
-                {/*</div>*/}
-                {/*<div className='medals'>*/}
-                {/*    Gold Medals: {this.state.medal}*/}
-                {/*    <button onClick={this.addMedal}>+</button>*/}
-                {/*    <button disabled={this.state.medal===0} onClick={this.subtractMedal} >-</button>*/}
-
-                {/*</div>*/}
-
                 {country.name}
                 <span className='badge'>
                     {this.getTotals(country, medals)}

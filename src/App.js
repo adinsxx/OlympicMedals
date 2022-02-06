@@ -36,6 +36,11 @@ class App extends Component {
     return sum
   }
 
+  handleDelete = (countryId) => {
+    const countries = this.state.countries.filter(c => c.id !== countryId);
+    this.setState({countries: countries});
+  }
+
   render() { 
     return (
         <React.Fragment>
