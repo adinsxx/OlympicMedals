@@ -7,7 +7,7 @@ export class NewCountry extends Component {
   render() {
     return (
     <div>
-
+      <button></button>
     </div>
     );
   }

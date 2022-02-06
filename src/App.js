@@ -58,11 +58,10 @@ class App extends Component {
                 onSubtract={this.handleSubtract}/>
                 
               )}
+              <NewCountry 
+                onAdd={this.handleAdd}
+              />
             </div>
-            <div className='newCountries'>
-              <NewCountry/>
-            </div>
-
         </React.Fragment>
     );
   }
