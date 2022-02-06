@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Country from './components/Country';
 import './App.css';
+import NewCountry from './components/NewCountry';
 
 class App extends Component {
   state = {
@@ -55,7 +56,11 @@ class App extends Component {
                 medals={this.state.medals}
                 onAdd={this.handleAdd}
                 onSubtract={this.handleSubtract}/>
+                
               )}
+            </div>
+            <div className='newCountries'>
+              <NewCountry/>
             </div>
 
         </React.Fragment>
