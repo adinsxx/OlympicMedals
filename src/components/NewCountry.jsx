@@ -35,7 +35,7 @@ const NewCountry = (props) => {
   const [newCountry, setNewCountry] = useState('');
   return (
     <div className='newCountryButton'>
-      <button>Add Country</button>
+      <button onClick={() => setShowPrompt(true)}>Add Country</button>
     </div>  )
 }
 

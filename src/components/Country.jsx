@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import Medal from './Medal';
 
 
-class Country extends Component {
-    // state = {
-    //     name: this.props.country.name,
-    //     gold: this.props.country.gold,
-    // }
+const Country = () => {
+    state = {
+        name: this.props.country.name,
+        gold: this.props.country.gold,
+    }
 
-    // addMedal = () => this.setState({gold: this.state.gold + 1});
-    // subtractMedal = () => this.setState({gold: this.state.gold - 1});
+    addMedal = () => this.setState({gold: this.state.gold + 1});
+    subtractMedal = () => this.setState({gold: this.state.gold - 1});
 
     getTotals(country, medals){
         let sum = 0;
