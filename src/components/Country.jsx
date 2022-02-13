@@ -1,35 +1,28 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Medal from './Medal';
 
 
-const Country = () => {
-    state = {
-        name: this.props.country.name,
-        gold: this.props.country.gold,
-    }
+const Country = (props) => {
+    const {country, medals, onIncrement, onSubtract, onDelete} = props;
 
-    addMedal = () => this.setState({gold: this.state.gold + 1});
-    subtractMedal = () => this.setState({gold: this.state.gold - 1});
-
-    getTotals(country, medals){
+    const getTotals = (country, medals) => {
         let sum = 0;
-        medals.forEach(medal => {sum += country[medal.name];});
+        medals.forEach(medal => {
+            sum += country[medal.name];
+        });
         return sum;
     }
 
 
-
-    render() {
-        const {country, medals, onIncrement, onSubtract, onDelete} = this.props;
-        return (
-            <div className='country'>
-                <div className='name'>
+    return (
+        <div className='country'>
+            <div className='name'>
                 {country.name}
                 <span className='badge'>
-                    {this.getTotals(country, medals)}
+                    {getTotals(country, medals)}
                 </span>
-                </div>
-                { medals.map(medal => 
+            </div>
+            {medals.map(medal =>
                 <Medal
                     key={medal.id}
                     country={country}
@@ -37,13 +30,12 @@ const Country = () => {
                     onIncrement={onIncrement}
                     onSubtract={onSubtract}
                 />
-                )}
-                <button onClick={() => onDelete(country.id)}>Delete</button>
+            )}
+            <button onClick={() => onDelete(country.id)}>Delete</button>
 
-                <hr/>
-            </div>
-        );
-    }
+            <hr/>
+        </div>
+    );
 }
 
 export default Country;
