@@ -6,7 +6,7 @@ import axios from "axios";
 
 const App = () => {
   const [ countries, setCountries ] = useState([]);
-  const apiEndpoint = "https://cmccurrie-medalsapi.azurewebsites.net";
+  const apiEndpoint = "https://cmccurrie-medalsapi.azurewebsites.net/swagger/index.html";
 
   const medals = useRef([
     { id: 1, name: 'gold' },
