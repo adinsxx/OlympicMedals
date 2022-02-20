@@ -28,7 +28,7 @@ const Country = (props) => {
                     country={country}
                     medal={medal}
                     onIncrement={onIncrement}
-                    onSubtract={onSubtract}
+                    onDecrement={onDecrement}
                 />
             )}
             <button onClick={() => onDelete(country.id)}>Delete</button>
