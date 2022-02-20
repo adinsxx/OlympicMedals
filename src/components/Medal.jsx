@@ -6,7 +6,7 @@ const Medal = (props) => {
         <div className="medals">
             {medal.name} Medals: {country[medal.name]}
             <button onClick={() => onIncrement(country.id, medal.name)}>+</button>
-            <button disabled={country[medal.name] === 0} onClick={() => onSubtract(country.id, medal.name)}></button>
+            <button disabled={country[medal.name] === 0} onClick={() => onSubtract(country.id, medal.name)}>-</button>
         </div>
     );
 }
