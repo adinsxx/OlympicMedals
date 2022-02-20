@@ -2,9 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import Country from './components/Country';
 import NewCountry from './components/NewCountry';
 import './App.css';
+import axios from "axios";
 
 const App = () => {
   const [ countries, setCountries ] = useState([]);
+  const apiEndpoint = "https://cmccurrie-medalsapi.azurewebsites.net";
+
   const medals = useRef([
     { id: 1, name: 'gold' },
     { id: 2, name: 'silver' },
@@ -22,12 +25,26 @@ const App = () => {
     setCountries(fetchedCountries);
   }, []);
 
-  const handleAdd = (name) => {
-    const id = countries.length === 0 ? 1 : Math.max(...countries.map(country => country.id)) + 1;
-    setCountries([...countries].concat({ id: id, name: name, gold: 0, silver: 0, bronze: 0 }));
+  const handleAdd = async (name) => {
+    // const id = countries.length === 0 ? 1 : Math.max(...countries.map(country => country.id)) + 1;
+    // setCountries([...countries].concat({ id: id, name: name, gold: 0, silver: 0, bronze: 0 }));
+    const {data: post} = await axios.post(apiEndpoint, {name: name});
+    setCountries(countries.concat(post));
   }
-  const handleDelete = (countryId) => {
-    setCountries([...countries].filter(c => c.id !== countryId));
+  const handleDelete = async (countryId) => {
+    // setCountries([...countries].filter(c => c.id !== countryId));
+    const originalCountries = countries;
+    setCountries(countries.filter(c => c.id !== countryId));
+    try {
+      await axios.delete(`${apiEndpoint}/${countryId}`);
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404) {
+        console.log("Record not found")
+      } else {
+        alert('An error has occurred');
+        setCountries(originalCountries);
+      }
+    }
   }
   const handleIncrement = (countryId, medalName) => {
     const idx = countries.findIndex(c => c.id === countryId);
