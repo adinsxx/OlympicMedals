@@ -3,7 +3,7 @@ import Medal from './Medal';
 
 
 const Country = (props) => {
-    const {country, medals, onIncrement, onSubtract, onDelete} = props;
+    const {country, medals, onIncrement, onDecrement, onDelete} = props;
 
     const getTotals = (country, medals) => {
         let sum = 0;
