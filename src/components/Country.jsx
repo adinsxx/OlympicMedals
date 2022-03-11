@@ -3,7 +3,7 @@ import Medal from './Medal';
 
 
 const Country = (props) => {
-    const {country, medals, onIncrement, onDecrement, onDelete} = props;
+    const { country, medals, onIncrement, onDecrement, onDelete, onSave, onReset, canDelete, canPatch } = props;
 
     const getTotals = (country, medals) => {
         let sum = 0;
@@ -27,11 +27,12 @@ const Country = (props) => {
                     key={medal.id}
                     country={country}
                     medal={medal}
+                    canPatch={ canPatch }
                     onIncrement={onIncrement}
                     onDecrement={onDecrement}
                 />
             )}
-            <button onClick={() => onDelete(country.id)}>Delete</button>
+            { canDelete && <button onClick={() => onDelete(country.id)}>delete</button> }
 
             <hr/>
         </div>
